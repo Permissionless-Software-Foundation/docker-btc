@@ -1,0 +1,22 @@
+btc:
+  # build: .
+  # dockerfile: Dockerfile
+  image: ruimarinho/bitcoin-core
+  container_name: btc
+  ports:
+    - "8332:8332" # RPC mainnet port
+    - "8333:8333" # p2p mainnet port
+    #- "28332:28332" # ZMQ port
+  volumes:
+    - ./data:/home/bitcoin/.bitcoin
+  command:
+    - -printtoconsole
+    - -rpcallowip=172.17.0.0/16
+    - -txindex=1
+    - -rpcuser=bitcoin
+    - -rpcpassword=password
+  #restart: always
+  #stop_signal: SIGINT
+  #stop_signal: SIGTERM #default
+  #stop_signal: SIGKILL
+  #stop_signal: SIGHUP
